@@ -64,24 +64,24 @@ export default function NewTaskPage() {
         <main className="flex-1 p-8">
           <div className="mx-auto max-w-2xl space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Submit New Task</h1>
-              <p className="text-muted-foreground">Create a new support request for our IT team</p>
+              <h1 className="text-3xl font-bold">Шинэ таск үүсгэх</h1>
+              <p className="text-muted-foreground">IT team-ээс хэрэгтэй дэмжлэгээ аваарай.</p>
             </div>
 
             <Card>
               <CardHeader>
-                <CardTitle>Task Details</CardTitle>
-                <CardDescription>Provide information about your support request</CardDescription>
+                <CardTitle>Таскийн талаарх мэдээлэл</CardTitle>
+                <CardDescription>Үүсгэж буй таскийн тухай мэдээллээ оруулаарай.</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="title">
-                      Task Title <span className="text-destructive">*</span>
+                      Гарчиг <span className="text-destructive">*</span>
                     </Label>
                     <Input
                       id="title"
-                      placeholder="Brief description of the issue"
+                      placeholder="Үүссэн асуудлын талаарх товч гарчиг..."
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       required
@@ -90,41 +90,41 @@ export default function NewTaskPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="description">
-                      Description <span className="text-destructive">*</span>
+                      Дэлгэрэнгүй тайлбар <span className="text-destructive">*</span>
                     </Label>
                     <Textarea
                       id="description"
-                      placeholder="Provide detailed information about your request..."
+                      placeholder="Асуудлын талаар дэлгэрэнгүй бичнэ үү..."
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       rows={6}
                       required
                     />
                     <p className="text-xs text-muted-foreground">
-                      Please include any relevant details, error messages, or steps to reproduce the issue
+                      Илүү дэлгэрэнгүй мэдээлэл бичих тусам IT багт хэрэгтэй бөгөөд хурдан шийдэгдэх боломжтой болно.
                     </p>
                   </div>
 
                   <div className="grid gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="priority">
-                        Priority <span className="text-destructive">*</span>
+                        Хүсэлтийн төлөв <span className="text-destructive">*</span>
                       </Label>
                       <Select value={priority} onValueChange={(v) => setPriority(v as TaskPriority)}>
                         <SelectTrigger id="priority">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="low">Low - Can wait</SelectItem>
-                          <SelectItem value="medium">Medium - Normal priority</SelectItem>
-                          <SelectItem value="high">High - Important</SelectItem>
-                          <SelectItem value="urgent">Urgent - Critical issue</SelectItem>
+                          <SelectItem value="low">Бага - Хүлээж чадна</SelectItem>
+                          <SelectItem value="medium">Дундаж - Яг хугацаандаа л шийдүүлмээр байна</SelectItem>
+                          <SelectItem value="high">Өндөр - Аль болох хурдан шийдүүлмээр байна</SelectItem>
+                          <SelectItem value="urgent">Яаралтай - Маш хэрэгтэй</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="dueDate">Due Date (Optional)</Label>
+                      <Label htmlFor="dueDate">Эцсийн хугацаа (Сонголтоор)</Label>
                       <Popover>
                         <PopoverTrigger asChild>
                           <Button
@@ -136,7 +136,7 @@ export default function NewTaskPage() {
                             )}
                           >
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            {dueDate ? format(dueDate, "PPP") : "Pick a date"}
+                            {dueDate ? format(dueDate, "PPP") : "Өдрөө сонгоорой"}
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
@@ -147,21 +147,21 @@ export default function NewTaskPage() {
                   </div>
 
                   <div className="rounded-lg border bg-muted/50 p-4">
-                    <h3 className="mb-2 font-semibold">What happens next?</h3>
+                    <h3 className="mb-2 font-semibold">Дараа нь юу болох вэ?</h3>
                     <ul className="space-y-1 text-sm text-muted-foreground">
-                      <li>1. Your request will be reviewed by our IT manager</li>
-                      <li>2. A technician will be assigned to your task</li>
-                      <li>3. You'll be able to track progress on your dashboard</li>
-                      <li>4. You'll receive updates as the status changes</li>
+                      <li>1. Таны илгээсэн хүсэлтийг манай IT менежер хянан үзнэ</li>
+                      <li>2. Тухайн асуудлыг шийдвэрлэх мэргэжилтэнг томилогдоно</li>
+                      <li>3. Та өөрийн хяналтын самбараас шийдвэрлэлтийн явцыг харах боломжтой</li>
+                      <li>4. Төлөв өөрчлөгдөх бүрд танд мэдэгдэл хүргэгдэнэ</li>
                     </ul>
                   </div>
 
                   <div className="flex gap-3">
                     <Button type="submit" disabled={isSubmitting} className="flex-1">
-                      {isSubmitting ? "Submitting..." : "Submit Task"}
+                      {isSubmitting ? "Submitting..." : "Хүсэлтийг илгээх"}
                     </Button>
                     <Button type="button" variant="outline" onClick={() => router.push("/dashboard")}>
-                      Cancel
+                      Цуцлах
                     </Button>
                   </div>
                 </form>
