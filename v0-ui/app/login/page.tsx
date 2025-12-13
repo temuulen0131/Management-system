@@ -29,7 +29,7 @@ export default function LoginPage() {
     if (success) {
       router.push("/dashboard")
     } else {
-      setError("Invalid email or password")
+      setError("email эсвэл нууц үг буруу байна.")
     }
 
     setIsLoading(false)
@@ -39,13 +39,13 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Sign in</CardTitle>
-          <CardDescription>Enter your credentials to access the task management system</CardDescription>
+          <CardTitle className="text-2xl font-bold">Нэвтрэх</CardTitle>
+          <CardDescription>системд нэвтрэхийн тулд нэвтрэх мэдээллээ оруулна уу</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Нэврэх нэр</Label>
               <Input
                 id="email"
                 type="email"
@@ -56,7 +56,7 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Нууц үг</Label>
               <Input
                 id="password"
                 type="password"
@@ -73,7 +73,7 @@ export default function LoginPage() {
             )}
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Signing in..." : "Нэвтрэх"}
             </Button>
 
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
