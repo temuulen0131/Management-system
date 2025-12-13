@@ -203,14 +203,14 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Client Dashboard</h1>
-          <p className="text-muted-foreground">Track your support requests</p>
+          <h1 className="text-3xl font-bold"> Миний хүсэлтүүд</h1>
+          <p className="text-muted-foreground">Хүсэлтийн явцаа эндээс хянана уу</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending</CardTitle>
+              <CardTitle className="text-sm font-medium">Хүлээгдэж буй</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -220,7 +220,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">In Progress</CardTitle>
+              <CardTitle className="text-sm font-medium">Шийдэгдэж буй</CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -230,7 +230,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Амжилттай дууссан</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -241,14 +241,14 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">My Requests</h2>
-            <p className="text-sm text-muted-foreground">Your submitted support tickets</p>
+            <h2 className="text-xl font-semibold">Хүсэлтийн мэдээлэл</h2>
+            <p className="text-sm text-muted-foreground">Таны илгээсэн хүсэлтүүдийн дэлгэрэнгүй мэдээлэл</p>
           </div>
 
           {myTasks.length === 0 ? (
             <Card>
               <CardContent className="flex min-h-[200px] items-center justify-center">
-                <p className="text-muted-foreground">No support requests submitted yet</p>
+                <p className="text-muted-foreground">Одоогоор хүсэлт илгээгүй байна.</p>
               </CardContent>
             </Card>
           ) : (
