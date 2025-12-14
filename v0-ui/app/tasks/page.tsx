@@ -72,17 +72,17 @@ export default function TasksPage() {
         <main className="flex-1 p-8">
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Tasks</h1>
-              <p className="text-muted-foreground">View and manage tasks</p>
+              <h1 className="text-3xl font-bold">Хүсэлтүүд</h1>
+              <p className="text-muted-foreground">Хүсэлтийн төлөвийг харах</p>
             </div>
 
             <Tabs defaultValue="all" className="space-y-4">
               <TabsList>
-                <TabsTrigger value="all">All Tasks</TabsTrigger>
-                <TabsTrigger value="pending">Pending</TabsTrigger>
-                <TabsTrigger value="in_progress">In Progress</TabsTrigger>
-                <TabsTrigger value="in_review">In Review</TabsTrigger>
-                <TabsTrigger value="completed">Completed</TabsTrigger>
+                <TabsTrigger value="all">Бүх хүсэлт</TabsTrigger>
+                <TabsTrigger value="pending">Хүлээгдэж буй</TabsTrigger>
+                <TabsTrigger value="in_progress">Шийдвэрлэгдэж буй</TabsTrigger>
+                <TabsTrigger value="in_review">Хянагдаж буй</TabsTrigger>
+                <TabsTrigger value="completed">Дууссан</TabsTrigger>
               </TabsList>
 
               <TabsContent value="all" className="space-y-4">

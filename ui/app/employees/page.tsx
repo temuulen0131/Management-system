@@ -33,7 +33,7 @@ export default function EmployeesPage() {
         <main className="flex-1 p-8">
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Employees</h1>
+              <h1 className="text-3xl font-bold">Ажилчдын мэдээлэл</h1>
               <p className="text-muted-foreground">Manage your IT support team</p>
             </div>
 
@@ -65,12 +65,12 @@ export default function EmployeesPage() {
 
                       <div className="flex items-center gap-2">
                         <Users className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm font-medium">{stats.total} tasks assigned</span>
+                        <span className="text-sm font-medium">{stats.total} даалгавар гүйцэтгэсэн</span>
                       </div>
 
                       <div className="flex gap-2">
-                        <Badge variant="outline">{stats.active} active</Badge>
-                        <Badge variant="secondary">{stats.completed} completed</Badge>
+                        <Badge variant="outline">{stats.active} идэвхтэй</Badge>
+                        <Badge variant="secondary">{stats.completed} дууссан</Badge>
                       </div>
                     </CardContent>
                   </Card>

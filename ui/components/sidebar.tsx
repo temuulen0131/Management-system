@@ -53,7 +53,7 @@ export function Sidebar() {
   return (
     <div className="flex h-screen w-64 flex-col border-r bg-card">
       <div className="border-b p-6">
-        <h1 className="text-xl font-bold">Task Manager</h1>
+        <h1 className="text-xl font-bold">Менежерын систем</h1>
         <p className="text-sm text-muted-foreground">{user?.name}</p>
         <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
       </div>
@@ -80,7 +80,7 @@ export function Sidebar() {
       <div className="border-t p-4">
         <Button variant="ghost" className="w-full justify-start gap-3" onClick={logout}>
           <LogOut className="h-4 w-4" />
-          Sign out
+          Гарах
         </Button>
       </div>
     </div>

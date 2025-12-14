@@ -22,7 +22,7 @@ const INITIAL_TASKS: Task[] = [
   {
     id: "1",
     title: "Setup new workstation",
-    description: "Need to setup a new workstation for the marketing department",
+    description: "Маркетингийн хэлтэст зориулан шинэ ажлын компьютер суурилуулж, тохируулах шаардлагатай.",
     status: "pending",
     priority: "high",
     clientId: "3",
