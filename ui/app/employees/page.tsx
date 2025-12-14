@@ -56,11 +56,11 @@ export default function EmployeesPage() {
                   <TableHeader>
                     <TableRow>
                       <TableHead className="w-12"></TableHead>
-                      <TableHead>Employee Name</TableHead>
-                      <TableHead>Role</TableHead>
-                      <TableHead>Total Tasks</TableHead>
-                      <TableHead>Active Tasks</TableHead>
-                      <TableHead>Completed Tasks</TableHead>
+                      <TableHead>Ажилтны нэр</TableHead>
+                      <TableHead>Үүрэг</TableHead>
+                      <TableHead>Нийт хүсэлт</TableHead>
+                      <TableHead>Идэвхтэй хүсэлт</TableHead>
+                      <TableHead>Дуусгасан хүсэлт</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>

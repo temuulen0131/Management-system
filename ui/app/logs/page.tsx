@@ -45,7 +45,7 @@ export default function LogsPage() {
         <main className="flex-1 p-8">
           <div className="space-y-6">
               <div>
-                <h1 className="text-3xl font-bold">Activity Logs</h1>
+                <h1 className="text-3xl font-bold">Үйл ажиллагааны бүртгэл</h1>
               <p className="text-muted-foreground">Бүх даалгаврын өөрчлөлт, үйл ажиллагааны бүрэн түүх</p>
             </div>
 
