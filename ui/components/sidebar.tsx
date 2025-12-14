@@ -53,7 +53,11 @@ export function Sidebar() {
   return (
     <div className="flex h-screen w-64 flex-col border-r bg-card">
       <div className="border-b p-6">
-        <h1 className="text-xl font-bold">Менежерын систем</h1>
+<h1 className="text-xl font-bold">
+  {user?.role === "manager" && "Менежерын систем"}
+  {user?.role === "employee" && "Ажилтны систем"}
+  {user?.role === "client" && "Хэрэглэгчийн систем"}
+</h1>
         <p className="text-sm text-muted-foreground">{user?.name}</p>
         <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
       </div>

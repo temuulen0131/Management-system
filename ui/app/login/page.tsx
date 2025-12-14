@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import Link from "next/link"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -75,6 +76,9 @@ export default function LoginPage() {
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Signing in..." : "Нэвтрэх"}
             </Button>
+            <Link href="/register" className="text-sm underline hover:text-primary">
+              Шинэ хэрэглэгч бол энд дарна уу
+            </Link>
 
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
               <p className="font-semibold">Demo Credentials:</p>
