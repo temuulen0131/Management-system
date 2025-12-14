@@ -64,14 +64,14 @@ export default function NewTaskPage() {
         <main className="flex-1 p-8">
           <div className="mx-auto max-w-2xl space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Submit New Task</h1>
-              <p className="text-muted-foreground">Create a new support request for our IT team</p>
+              <h1 className="text-3xl font-bold">Даалгавар өгөх</h1>
+              <p className="text-muted-foreground">Манай IT багт шинэ дэмжлэгийн хүсэлт үүсгээрэй</p>
             </div>
 
             <Card>
               <CardHeader>
-                <CardTitle>Task Details</CardTitle>
-                <CardDescription>Provide information about your support request</CardDescription>
+                <CardTitle>Даалгаврын дэлгэрэнгүй</CardTitle>
+                <CardDescription>Таны дэмжлэгийн хүсэлтийн талаар мэдээлэл өгнө үү</CardDescription>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -101,7 +101,7 @@ export default function NewTaskPage() {
                       required
                     />
                     <p className="text-xs text-muted-foreground">
-                      Please include any relevant details, error messages, or steps to reproduce the issue
+                      Та хүсэлтийнхээ талаархи холбогдох дэлгэрэнгүй мэдээлэл, алдааны мэдэгдэл, эсвэл асуудлыг дахин үүсгэх алхмуудыг оруулна уу
                     </p>
                   </div>
 
@@ -115,10 +115,10 @@ export default function NewTaskPage() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="low">Low - Can wait</SelectItem>
-                          <SelectItem value="medium">Medium - Normal priority</SelectItem>
-                          <SelectItem value="high">High - Important</SelectItem>
-                          <SelectItem value="urgent">Urgent - Critical issue</SelectItem>
+                          <SelectItem value="low">Бага - Хүлээж болно</SelectItem>
+                          <SelectItem value="medium">Дунд - Энгийн ач холбогдол</SelectItem>
+                          <SelectItem value="high">Өндөр - Чухал</SelectItem>
+                          <SelectItem value="urgent">Яаралтай - Шаардлагатай асуудал</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -147,12 +147,12 @@ export default function NewTaskPage() {
                   </div>
 
                   <div className="rounded-lg border bg-muted/50 p-4">
-                    <h3 className="mb-2 font-semibold">What happens next?</h3>
+                    <h3 className="mb-2 font-semibold">Дараах үйл явц явагдана</h3>
                     <ul className="space-y-1 text-sm text-muted-foreground">
-                      <li>1. Your request will be reviewed by our IT manager</li>
-                      <li>2. A technician will be assigned to your task</li>
-                      <li>3. You'll be able to track progress on your dashboard</li>
-                      <li>4. You'll receive updates as the status changes</li>
+                      <li>1. Таны хүсэлтийг манай IT менежер хянах болно</li>
+                      <li>2. Техникч таны даалгаварт томилогдох болно</li>
+                      <li>3. Та хяналтын самбараас явцыг хянах боломжтой болно</li>
+                      <li>4. Статус өөрчлөгдөхөд шинэчлэлтүүдийг хүлээн авах болно</li>
                     </ul>
                   </div>
 
@@ -161,7 +161,7 @@ export default function NewTaskPage() {
                       {isSubmitting ? "Submitting..." : "Submit Task"}
                     </Button>
                     <Button type="button" variant="outline" onClick={() => router.push("/dashboard")}>
-                      Cancel
+                      Болих
                     </Button>
                   </div>
                 </form>

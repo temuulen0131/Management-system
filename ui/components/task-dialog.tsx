@@ -103,12 +103,12 @@ export function TaskDialog({
       <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">{task.title}</DialogTitle>
-          <DialogDescription>Task ID: {task.id}</DialogDescription>
+          <DialogDescription>Даалгаврын ID: {task.id}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
           <div>
-            <Label className="text-base font-semibold">Description</Label>
+            <Label className="text-base font-semibold">Тайлбар</Label>
             <p className="mt-2 text-sm text-muted-foreground">{task.description}</p>
           </div>
 
@@ -116,7 +116,7 @@ export function TaskDialog({
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Client
+                Хэрэглэгч
               </Label>
               <p className="text-sm">{task.clientName}</p>
             </div>
@@ -124,15 +124,15 @@ export function TaskDialog({
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Assigned To
+                Хуваарилагдсан
               </Label>
-              <p className="text-sm">{task.assignedToName || "Unassigned"}</p>
+              <p className="text-sm">{task.assignedToName || "Хуваарилаагүй"}</p>
             </div>
 
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <Calendar className="h-4 w-4" />
-                Due Date
+                Дуусах огноо
               </Label>
               <p className="text-sm">{task.dueDate ? format(new Date(task.dueDate), "MMMM d, yyyy") : "No due date"}</p>
             </div>
@@ -140,7 +140,7 @@ export function TaskDialog({
             <div className="space-y-2">
               <Label className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                Created
+                Үүсгэсэн
               </Label>
               <p className="text-sm">{format(new Date(task.createdAt), "MMM d, yyyy")}</p>
             </div>
@@ -148,13 +148,13 @@ export function TaskDialog({
 
           <div className="flex gap-4">
             <div>
-              <Label>Status</Label>
+              <Label>Статус</Label>
               <div className="mt-2">
                 <Badge className="capitalize">{task.status.replace("_", " ")}</Badge>
               </div>
             </div>
             <div>
-              <Label>Priority</Label>
+              <Label>Тэргүүлэх байдал</Label>
               <div className="mt-2">
                 <Badge variant="outline" className="capitalize">
                   {task.priority}
@@ -165,7 +165,7 @@ export function TaskDialog({
 
           {showAssignment && employees.length > 0 && (
             <div className="space-y-3 rounded-lg border p-4">
-              <Label>Assign Task</Label>
+              <Label>Даалгавар хуваарилах</Label>
               <div className="flex gap-2">
                 <Select value={selectedEmployee} onValueChange={setSelectedEmployee}>
                   <SelectTrigger className="flex-1">
@@ -180,7 +180,7 @@ export function TaskDialog({
                   </SelectContent>
                 </Select>
                 <Button onClick={handleAssign} disabled={!selectedEmployee || selectedEmployee === task.assignedToId}>
-                  Assign
+                  Хуваарилах
                 </Button>
               </div>
             </div>
@@ -188,7 +188,7 @@ export function TaskDialog({
 
           {showStatusChange && (
             <div className="space-y-3 rounded-lg border p-4">
-              <Label>Update Status</Label>
+              <Label>Статус шинэчлэх</Label>
               <div className="flex gap-2">
                 <Select value={selectedStatus} onValueChange={(v) => setSelectedStatus(v as TaskStatus)}>
                   <SelectTrigger className="flex-1">
@@ -203,7 +203,7 @@ export function TaskDialog({
                   </SelectContent>
                 </Select>
                 <Button onClick={handleStatusChange} disabled={selectedStatus === task.status}>
-                  Update
+                  Шинэчлэх
                 </Button>
               </div>
             </div>
@@ -211,7 +211,7 @@ export function TaskDialog({
 
           {user.role === "manager" && (
             <div className="space-y-3 rounded-lg border p-4">
-              <Label>Update Priority</Label>
+              <Label>Тэргүүлэх байдал</Label>
               <div className="flex gap-2">
                 <Select value={selectedPriority} onValueChange={(v) => setSelectedPriority(v as TaskPriority)}>
                   <SelectTrigger className="flex-1">
@@ -226,7 +226,7 @@ export function TaskDialog({
                   </SelectContent>
                 </Select>
                 <Button onClick={handlePriorityChange} disabled={selectedPriority === task.priority}>
-                  Update
+                  Шинэчлэх
                 </Button>
               </div>
             </div>
@@ -234,7 +234,7 @@ export function TaskDialog({
 
           {taskHistory.length > 0 && (
             <div className="space-y-3">
-              <Label className="text-base font-semibold">History</Label>
+              <Label className="text-base font-semibold">Түүх</Label>
               <div className="space-y-2 rounded-lg border p-4">
                 {taskHistory.map((entry) => (
                   <div key={entry.id} className="flex justify-between border-b pb-2 text-sm last:border-0">
