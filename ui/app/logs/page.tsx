@@ -44,15 +44,15 @@ export default function LogsPage() {
         <Sidebar />
         <main className="flex-1 p-8">
           <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold">Activity Logs</h1>
-              <p className="text-muted-foreground">Complete history of all task changes and activities</p>
+              <div>
+                <h1 className="text-3xl font-bold">Activity Logs</h1>
+              <p className="text-muted-foreground">Бүх даалгаврын өөрчлөлт, үйл ажиллагааны бүрэн түүх</p>
             </div>
 
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
-                placeholder="Search logs by task, user, or action..."
+                placeholder="Хүсэлт, хэрэглэгч эсвэл дэлгэрэнгүйгээр хайх..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10"
@@ -61,22 +61,22 @@ export default function LogsPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Activity Timeline</CardTitle>
+                <CardTitle>Үйл ажиллагааны цаг хугацааны хуваарь</CardTitle>
               </CardHeader>
               <CardContent>
                 {filteredHistory.length === 0 ? (
                   <div className="flex min-h-[200px] items-center justify-center">
-                    <p className="text-muted-foreground">No activity logs found</p>
+                    <p className="text-muted-foreground">Үйл ажиллагааны бүртгэл олдсонгүй</p>
                   </div>
                 ) : (
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>Timestamp</TableHead>
-                        <TableHead>Task</TableHead>
-                        <TableHead>User</TableHead>
-                        <TableHead>Action</TableHead>
-                        <TableHead>Details</TableHead>
+                        <TableHead>Цаг</TableHead>
+                        <TableHead>Хүсэлт</TableHead>
+                        <TableHead>Хэрэглэгч</TableHead>
+                        <TableHead>Үйлдэл</TableHead>
+                        <TableHead>Дэлгэрэнгүй</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>

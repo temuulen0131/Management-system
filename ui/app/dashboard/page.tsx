@@ -60,14 +60,14 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Manager Dashboard</h1>
-          <p className="text-muted-foreground">Overview of all tasks and performance analytics</p>
+          <h1 className="text-3xl font-bold">Менежерийн самбар</h1>
+          <p className="text-muted-foreground">Бүх даалгавар ба гүйцэтгэлийн аналитикийн тойм</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
+              <CardTitle className="text-sm font-medium">Нийт даалгаврууд</CardTitle>
               <ClipboardList className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -77,7 +77,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending</CardTitle>
+              <CardTitle className="text-sm font-medium">Хүлээгдэж буй</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -87,7 +87,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">In Progress</CardTitle>
+              <CardTitle className="text-sm font-medium">Явцад</CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -97,7 +97,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Дууссан</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -127,14 +127,14 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">Unassigned Tasks</h2>
-            <p className="text-sm text-muted-foreground">Tasks waiting to be assigned to employees</p>
+            <h2 className="text-xl font-semibold">Хуваарилаагүй даалгаврууд</h2>
+            <p className="text-sm text-muted-foreground">Ажилчдад хуваарилагдахаар хүлээгдэж буй даалгаврууд</p>
           </div>
 
           {unassignedTasks.length === 0 ? (
             <Card>
               <CardContent className="flex min-h-[200px] items-center justify-center">
-                <p className="text-muted-foreground">No unassigned tasks</p>
+                <p className="text-muted-foreground">Хуваарилаагүй даалгавар алга </p>
               </CardContent>
             </Card>
           ) : (
@@ -148,8 +148,8 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">Recent Tasks</h2>
-            <p className="text-sm text-muted-foreground">All tasks in the system</p>
+            <h2 className="text-xl font-semibold">Сүүлийн даалгаврууд</h2>
+            <p className="text-sm text-muted-foreground">Систем дэх бүх даалгаврууд</p>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -174,14 +174,14 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Employee Dashboard</h1>
-          <p className="text-muted-foreground">Your assigned tasks</p>
+          <h1 className="text-3xl font-bold">Ажилчны самбар</h1>
+          <p className="text-muted-foreground">Таны хуваарилагдсан даалгаврууд</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">My Tasks</CardTitle>
+              <CardTitle className="text-sm font-medium">Миний Даалгаврууд</CardTitle>
               <ClipboardList className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -191,7 +191,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">To Do</CardTitle>
+              <CardTitle className="text-sm font-medium">Хийх Даалгаврууд</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -201,7 +201,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Дууссан</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -212,14 +212,14 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">Active Tasks</h2>
-            <p className="text-sm text-muted-foreground">Tasks assigned to you</p>
+            <h2 className="text-xl font-semibold">Идэвхтэй Даалгаврууд</h2>
+            <p className="text-sm text-muted-foreground">Танд хуваарилагдсан даалгаврууд</p>
           </div>
 
           {myTasks.length === 0 ? (
             <Card>
               <CardContent className="flex min-h-[200px] items-center justify-center">
-                <p className="text-muted-foreground">No tasks assigned yet</p>
+                <p className="text-muted-foreground">Танд даалгавар хуваарилаагүй байна</p>
               </CardContent>
             </Card>
           ) : (
@@ -243,14 +243,14 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Client Dashboard</h1>
-          <p className="text-muted-foreground">Track your support requests</p>
+          <h1 className="text-3xl font-bold">Хэрэглэгчийн самбар</h1>
+          <p className="text-muted-foreground">Таны дэмжлэгийн хүсэлтүүдийг хянах</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Pending</CardTitle>
+              <CardTitle className="text-sm font-medium">Хүлээгдэж буй</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -260,7 +260,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">In Progress</CardTitle>
+              <CardTitle className="text-sm font-medium">Идэвхтэй</CardTitle>
               <AlertCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -270,7 +270,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Completed</CardTitle>
+              <CardTitle className="text-sm font-medium">Дууссан</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -281,14 +281,14 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">My Requests</h2>
-            <p className="text-sm text-muted-foreground">Your submitted support tickets</p>
+            <h2 className="text-xl font-semibold">Миний хүсэлтүүд</h2>
+            <p className="text-sm text-muted-foreground">Таны илгээсэн хүсэлтүүд</p>
           </div>
 
           {myTasks.length === 0 ? (
             <Card>
               <CardContent className="flex min-h-[200px] items-center justify-center">
-                <p className="text-muted-foreground">No support requests submitted yet</p>
+                <p className="text-muted-foreground">Одоогоор хүсэлт илгээгээгүй байна</p>
               </CardContent>
             </Card>
           ) : (

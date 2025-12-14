@@ -63,7 +63,7 @@ export default function TasksPage() {
       return (
         <Card>
           <CardContent className="flex min-h-[200px] items-center justify-center">
-            <p className="text-muted-foreground">No tasks found</p>
+            <p className="text-muted-foreground">Даалгавар олдсонгүй</p>
           </CardContent>
         </Card>
       )
@@ -83,7 +83,7 @@ export default function TasksPage() {
       return (
         <Card>
           <CardContent className="flex min-h-[200px] items-center justify-center">
-            <p className="text-muted-foreground">No tasks found</p>
+            <p className="text-muted-foreground">Даалгавар олдсонгүй</p>
           </CardContent>
         </Card>
       )
@@ -95,13 +95,13 @@ export default function TasksPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Task Title</TableHead>
-                <TableHead>Client</TableHead>
-                <TableHead>Assigned Employee</TableHead>
-                <TableHead>Status Timeline</TableHead>
-                <TableHead>Priority</TableHead>
-                <TableHead>Created Date</TableHead>
-                <TableHead>Actions</TableHead>
+                <TableHead>Хүсэлт</TableHead>
+                <TableHead>Хэрэглэгч</TableHead>
+                <TableHead>Хуваарилагдсан Ажилтан</TableHead>
+                <TableHead>Төлөвийн Хугацаа</TableHead>
+                <TableHead>Чухал байдал</TableHead>
+                <TableHead>Үүсгэсэн Огноо</TableHead>
+                <TableHead>Үйлдлүүд</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -123,7 +123,7 @@ export default function TasksPage() {
                     <TableCell className="whitespace-nowrap">{new Date(task.createdAt).toLocaleDateString()}</TableCell>
                     <TableCell>
                       <Button variant="outline" size="sm" onClick={() => handleTaskClick(task)}>
-                        View
+                        Үзэх
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -144,8 +144,8 @@ export default function TasksPage() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-3xl font-bold">Tasks</h1>
-                <p className="text-muted-foreground">View and manage tasks</p>
+                <h1 className="text-3xl font-bold">Даалгаврууд</h1>
+                <p className="text-muted-foreground">Даалгавруудыг үзэж, удирдах</p>
               </div>
               {user?.role === "manager" && (
                 <div className="flex gap-2">
@@ -171,11 +171,11 @@ export default function TasksPage() {
 
             <Tabs defaultValue="all" className="space-y-4">
               <TabsList>
-                <TabsTrigger value="all">All Tasks</TabsTrigger>
-                <TabsTrigger value="pending">Pending</TabsTrigger>
-                <TabsTrigger value="in_progress">In Progress</TabsTrigger>
-                <TabsTrigger value="in_review">In Review</TabsTrigger>
-                <TabsTrigger value="completed">Completed</TabsTrigger>
+                <TabsTrigger value="all">Бүх</TabsTrigger>
+                <TabsTrigger value="pending">Хүлээгдэж буй</TabsTrigger>
+                <TabsTrigger value="in_progress">Идэвхтэй</TabsTrigger>
+                <TabsTrigger value="in_review">Шалгаж буй</TabsTrigger>
+                <TabsTrigger value="completed">Дууссан</TabsTrigger>
               </TabsList>
 
               <TabsContent value="all" className="space-y-4">

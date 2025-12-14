@@ -43,13 +43,13 @@ export default function EmployeesPage() {
         <main className="flex-1 p-8">
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Employees</h1>
-              <p className="text-muted-foreground">Manage your IT support team and track their performance</p>
+              <h1 className="text-3xl font-bold">Ажилчид</h1>
+              <p className="text-muted-foreground">Ажилчдын гүйцэтгэл ба даалгаврын хяналт</p>
             </div>
 
             <Card>
               <CardHeader>
-                <CardTitle>Employee Activity</CardTitle>
+                <CardTitle>Ажилчдын үйл ажиллагаа</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -123,7 +123,7 @@ export default function EmployeesPage() {
                                 <div className="p-4 space-y-3">
                                   <div className="flex items-center gap-2 mb-3">
                                     <CheckCircle className="h-4 w-4 text-green-600" />
-                                    <h4 className="font-semibold">Completed Tasks</h4>
+                                    <h4 className="font-semibold">Дууссан даалгаврууд</h4>
                                   </div>
                                   {completedTasks.length > 0 ? (
                                     <div className="space-y-2">
@@ -145,7 +145,7 @@ export default function EmployeesPage() {
                                       ))}
                                     </div>
                                   ) : (
-                                    <p className="text-sm text-muted-foreground">No completed tasks yet</p>
+                                    <p className="text-sm text-muted-foreground">Одоогоор дууссан даалгавар алга</p>
                                   )}
                                 </div>
                               </TableCell>
