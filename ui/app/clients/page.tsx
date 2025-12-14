@@ -45,8 +45,8 @@ export default function ClientsPage() {
         <main className="flex-1 p-8">
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold">Client Requests</h1>
-              <p className="text-muted-foreground">Detailed view of all client support requests</p>
+              <h1 className="text-3xl font-bold">Харилцагчийн хүсэлт</h1>
+              <p className="text-muted-foreground">Харилцагчийн гаргасан хүсэлтийн дэлгэрэнгүй мэдээлэл</p>
             </div>
 
             {MOCK_CLIENTS.map((client) => {
@@ -65,11 +65,11 @@ export default function ClientsPage() {
                       <TableHeader>
                         <TableRow>
                           <TableHead className="w-12"></TableHead>
-                          <TableHead>Task Title</TableHead>
-                          <TableHead>Assigned To</TableHead>
-                          <TableHead>Status Timeline</TableHead>
-                          <TableHead>Priority</TableHead>
-                          <TableHead>Created</TableHead>
+                          <TableHead>Хүсэлтийн гарчиг</TableHead>
+                          <TableHead>Хариуцаж авсан ажилтан</TableHead>
+                          <TableHead>Төлөв</TableHead>
+                          <TableHead>Эрэмбэ</TableHead>
+                          <TableHead>Үүссэн он</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -115,7 +115,7 @@ export default function ClientsPage() {
                                         <p className="text-sm text-muted-foreground">{task.description}</p>
                                       </div>
                                       <div>
-                                        <h4 className="font-semibold mb-2">Task History</h4>
+                                        <h4 className="font-semibold mb-2">Хүсэлтийн түүх</h4>
                                         <div className="space-y-2">
                                           {history.length > 0 ? (
                                             history.map((entry) => (
@@ -132,7 +132,7 @@ export default function ClientsPage() {
                                               </div>
                                             ))
                                           ) : (
-                                            <p className="text-sm text-muted-foreground">No history available</p>
+                                            <p className="text-sm text-muted-foreground">Хоосон</p>
                                           )}
                                         </div>
                                       </div>
