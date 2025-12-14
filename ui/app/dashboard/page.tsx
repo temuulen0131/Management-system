@@ -204,7 +204,7 @@ export default function DashboardPage() {
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold">Хэрэглэгчийн хэсэг</h1>
-          <p className="text-muted-foreground">Хяналтын хэсэг</p>
+          <p className="text-muted-foreground">Таны хүсэлтийн дэлгэрэнгүй мэдээлэл</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -230,7 +230,7 @@ export default function DashboardPage() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Дууссан</CardTitle>
+              <CardTitle className="text-sm font-medium">Амжилттай шийдэгдсэн</CardTitle>
               <CheckCircle className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -241,14 +241,14 @@ export default function DashboardPage() {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-xl font-semibold">Миний хүсэлтүүд</h2>
-            <p className="text-sm text-muted-foreground">Таны илгээсэн дэмжлэгийн тасалбарууд</p>
+            <h2 className="text-xl font-semibold">Миний гаргасан хүсэлтүүд</h2>
+            <p className="text-sm text-muted-foreground">Таны үүсгэсэн хүсэлтүүдийн мэдээллийн салбар</p>
           </div>
 
           {myTasks.length === 0 ? (
             <Card>
               <CardContent className="flex min-h-[200px] items-center justify-center">
-                <p className="text-muted-foreground">Одоогоор дэмжлэгийн хүсэлт илгээгээгүй байна</p>
+                <p className="text-muted-foreground">Одоогоор хүсэлт илгээгээгүй байна</p>
               </CardContent>
             </Card>
           ) : (
