@@ -50,7 +50,7 @@ export default function TasksPage() {
       return (
         <Card>
           <CardContent className="flex min-h-[200px] items-center justify-center">
-            <p className="text-muted-foreground">No tasks found</p>
+            <p className="text-muted-foreground">Хоосон</p>
           </CardContent>
         </Card>
       )

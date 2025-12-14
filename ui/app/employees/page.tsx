@@ -9,9 +9,9 @@ import { Badge } from "@/components/ui/badge"
 import { Users } from "lucide-react"
 
 const MOCK_EMPLOYEES = [
-  { id: "2", name: "Sarah Employee", email: "employee@company.com", role: "Senior Technician" },
-  { id: "4", name: "John Tech", email: "john@company.com", role: "IT Support Specialist" },
-  { id: "5", name: "Emma Support", email: "emma@company.com", role: "Junior Technician" },
+  { id: "2", name: "Сараа Employee", email: "employee@company.com", role: "Senior Technician" },
+  { id: "4", name: "Болд Tech", email: "bold@company.com", role: "IT Support Specialist" },
+  { id: "5", name: "Энхлэн Support", email: "enkhlen@company.com", role: "Junior Technician" },
 ]
 
 export default function EmployeesPage() {
@@ -34,7 +34,7 @@ export default function EmployeesPage() {
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-bold">Ажилчдын мэдээлэл</h1>
-              <p className="text-muted-foreground">Manage your IT support team</p>
+              <p className="text-muted-foreground">IT team-ээ удирдах</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
