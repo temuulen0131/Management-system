@@ -2,136 +2,98 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# ---------------------
-# CLIENT MODEL
-# ---------------------
 class Client(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=255)
     department = models.CharField(max_length=100)
-    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
-
-# ---------------------
-# CLIENT REQUEST MODEL
-# ---------------------
-class ClientRequest(models.Model):
-    PRIORITY_CHOICES = [
-        ("LOW", "Low"),
-        ("MEDIUM", "Medium"),
-        ("HIGH", "High"),
-    ]
-
-    STATUS_CHOICES = [
-        ("NEW", "New"),
-        ("REVIEWING", "Reviewing"),
-        ("APPROVED", "Approved"),
-        ("REJECTED", "Rejected"),
-        ("CONVERTED", "Converted to Task"),
-    ]
-
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    category = models.CharField(max_length=100)
-    description = models.TextField()
-    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default="MEDIUM")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="NEW")
-    submitted_at = models.DateTimeField(auto_now_add=True)
-    reviewed_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+class Department(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"Request #{self.id} from {self.client.name}"
+        return self.name
 
 
-# ---------------------
-# TASK MODEL
-# ---------------------
-class Task(models.Model):
+
+class ClientRequest(models.Model):
     CATEGORY_CHOICES = [
         ("SOFTWARE", "Software"),
         ("HARDWARE", "Hardware"),
         ("NETWORK", "Network"),
-        ("ACCOUNT", "Account Access"),
+        ("ACCOUNT", "Account"),
         ("OTHER", "Other"),
     ]
 
-    STATUS_CHOICES = [
-        ("NEW", "New"),
-        ("IN_PROGRESS", "In Progress"),
-        ("WAITING", "Waiting"),
-        ("DONE", "Completed"),
-        ("CANCELLED", "Cancelled"),
-    ]
-
-    PRIORITY_CHOICES = [
-        ("LOW", "Low"),
-        ("MEDIUM", "Medium"),
-        ("HIGH", "High"),
-        ("URGENT", "Urgent"),
-    ]
-
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     description = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.description[:30]
+
+
+class Task(models.Model):
+    STATUS_CHOICES = [
+        ("OPEN", "Open"),
+        ("IN_PROGRESS", "In Progress"),
+        ("DONE", "Done"),
+    ]
+
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+
+    department = models.ForeignKey(
+        Department,
+        on_delete=models.CASCADE,
+        related_name="tasks"
+    )
 
     created_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name="tasks_created"
+        User,
+        related_name="created_tasks",
+        on_delete=models.CASCADE
     )
+
     assigned_to = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name="tasks_assigned"
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
 
-    client_request = models.OneToOneField(
-        ClientRequest, null=True, blank=True, on_delete=models.SET_NULL
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="OPEN"
     )
-
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="NEW")
-    priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default="MEDIUM")
-
-    due_date = models.DateTimeField(null=True, blank=True)
-    completed_at = models.DateTimeField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Task #{self.id} - {self.category}"
+        return self.title
 
 
-# ---------------------
-# TASK LOG MODEL
-# ---------------------
+class TaskComment(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class TaskLog(models.Model):
-    ACTION_TYPES = [
+    ACTION_CHOICES = [
         ("STATUS_CHANGE", "Status Change"),
-        ("COMMENT_ADDED", "Comment Added"),
-        ("TASK_ASSIGNED", "Task Assigned"),
-        ("UPDATE", "Update"),
+        ("ASSIGNMENT_CHANGE", "Assignment Change"),
     ]
 
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="logs")
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    action_type = models.CharField(max_length=50, choices=ACTION_TYPES)
-    old_value = models.TextField(null=True, blank=True)
-    new_value = models.TextField(null=True, blank=True)
+    action_type = models.CharField(max_length=50, choices=ACTION_CHOICES)
+    old_value = models.CharField(max_length=255)
+    new_value = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Log for Task #{self.task.id}"
-
-
-# ---------------------
-# TASK COMMENT MODEL
-# ---------------------
-class TaskComment(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="comments")
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    comment = models.TextField()
-    is_internal = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        uname = self.user.username if self.user else "Unknown"
-        return f"Comment on Task #{self.task.id} by {uname}"
