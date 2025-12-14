@@ -19,13 +19,15 @@ import { api } from "@/lib/api-client"
 
 export default function TasksPage() {
   const { user } = useAuth()
-  const { tasks, getTasksByAssignee, getTasksByClient, getTaskHistory } = useTaskStore()
+  const { tasks, fetchTasks, getTasksByAssignee, getTasksByClient, getTaskHistory } = useTaskStore()
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid")
   const [employees, setEmployees] = useState<any[]>([])
 
   useEffect(() => {
+    fetchTasks()
+    
     async function fetchEmployees() {
       try {
         const data = await api.getUsers('employee')

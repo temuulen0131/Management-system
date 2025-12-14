@@ -14,11 +14,13 @@ import { ChevronDown, ChevronRight } from "lucide-react"
 import { api } from "@/lib/api-client"
 
 export default function EmployeesPage() {
-  const { tasks } = useTaskStore()
+  const { tasks, fetchTasks } = useTaskStore()
   const [expandedEmployee, setExpandedEmployee] = useState<string | null>(null)
   const [employees, setEmployees] = useState<any[]>([])
 
   useEffect(() => {
+    fetchTasks()
+    
     async function fetchEmployees() {
       try {
         const data = await api.getUsers('employee')

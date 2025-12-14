@@ -15,12 +15,14 @@ import { api } from "@/lib/api-client"
 
 export default function DashboardPage() {
   const { user } = useAuth()
-  const { tasks, getTasksByAssignee, getTasksByClient } = useTaskStore()
+  const { tasks, fetchTasks, getTasksByAssignee, getTasksByClient } = useTaskStore()
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [employees, setEmployees] = useState<any[]>([])
 
   useEffect(() => {
+    fetchTasks()
+    
     async function fetchEmployees() {
       try {
         const data = await api.getUsers('employee')
@@ -51,7 +53,7 @@ export default function DashboardPage() {
     const pendingTasks = tasks.filter((t) => t.status === "pending").length
     const inProgressTasks = tasks.filter((t) => t.status === "in_progress").length
     const completedTasks = tasks.filter((t) => t.status === "completed").length
-    const unassignedTasks = tasks.filter((t) => !t.assignedToId)
+    const unassignedTasks = tasks.filter((t) => !t.assignedToId || t.assignedToId === '' || t.assignedToId === 'null')
 
     // Tasks completed per employee
     const employeeTaskCounts = employees.map((emp) => {

@@ -13,11 +13,13 @@ import { ChevronDown, ChevronRight } from "lucide-react"
 import { api } from "@/lib/api-client"
 
 export default function ClientsPage() {
-  const { tasks, getTasksByClient, getTaskHistory } = useTaskStore()
+  const { tasks, fetchTasks, getTasksByClient, getTaskHistory } = useTaskStore()
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
   const [clients, setClients] = useState<any[]>([])
 
   useEffect(() => {
+    fetchTasks()
+    
     async function fetchClients() {
       try {
         const data = await api.getUsers('client')
