@@ -7,9 +7,14 @@ import { useAuth } from "@/lib/auth-context"
 import { useTaskStore } from "@/lib/task-store"
 import { TaskCard } from "@/components/task-card"
 import { TaskDialog } from "@/components/task-dialog"
+import { TaskTimeline } from "@/components/task-timeline"
 import type { Task, TaskStatus } from "@/lib/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { LayoutGrid, List } from "lucide-react"
 
 const MOCK_EMPLOYEES = [
   { id: "2", name: "Sarah Employee" },
@@ -19,9 +24,10 @@ const MOCK_EMPLOYEES = [
 
 export default function TasksPage() {
   const { user } = useAuth()
-  const { tasks, getTasksByAssignee, getTasksByClient } = useTaskStore()
+  const { tasks, getTasksByAssignee, getTasksByClient, getTaskHistory } = useTaskStore()
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid")
 
   const handleTaskClick = (task: Task) => {
     setSelectedTask(task)
@@ -45,12 +51,19 @@ export default function TasksPage() {
     return filteredTasks.filter((task) => task.status === status)
   }
 
+  const priorityColors = {
+    low: "bg-gray-100 text-gray-700",
+    medium: "bg-blue-100 text-blue-700",
+    high: "bg-orange-100 text-orange-700",
+    urgent: "bg-red-100 text-red-700",
+  }
+
   const renderTaskGrid = (taskList: Task[]) => {
     if (taskList.length === 0) {
       return (
         <Card>
           <CardContent className="flex min-h-[200px] items-center justify-center">
-            <p className="text-muted-foreground">Хоосон</p>
+            <p className="text-muted-foreground">No tasks found</p>
           </CardContent>
         </Card>
       )
@@ -65,44 +78,134 @@ export default function TasksPage() {
     )
   }
 
+  const renderTaskTable = (taskList: Task[]) => {
+    if (taskList.length === 0) {
+      return (
+        <Card>
+          <CardContent className="flex min-h-[200px] items-center justify-center">
+            <p className="text-muted-foreground">No tasks found</p>
+          </CardContent>
+        </Card>
+      )
+    }
+
+    return (
+      <Card>
+        <CardContent className="p-0">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Task Title</TableHead>
+                <TableHead>Client</TableHead>
+                <TableHead>Assigned Employee</TableHead>
+                <TableHead>Status Timeline</TableHead>
+                <TableHead>Priority</TableHead>
+                <TableHead>Created Date</TableHead>
+                <TableHead>Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {taskList.map((task) => {
+                const history = getTaskHistory(task.id)
+                return (
+                  <TableRow key={task.id}>
+                    <TableCell className="font-medium">{task.title}</TableCell>
+                    <TableCell>{task.clientName}</TableCell>
+                    <TableCell>{task.assignedToName || "Unassigned"}</TableCell>
+                    <TableCell>
+                      <TaskTimeline task={task} history={history} />
+                    </TableCell>
+                    <TableCell>
+                      <Badge className={priorityColors[task.priority]} variant="secondary">
+                        {task.priority}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="whitespace-nowrap">{new Date(task.createdAt).toLocaleDateString()}</TableCell>
+                    <TableCell>
+                      <Button variant="outline" size="sm" onClick={() => handleTaskClick(task)}>
+                        View
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    )
+  }
+
   return (
     <ProtectedRoute>
       <div className="flex min-h-screen">
         <Sidebar />
         <main className="flex-1 p-8">
           <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold">Хүсэлтүүд</h1>
-              <p className="text-muted-foreground">Хүсэлтийн төлөвийг харах</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold">Tasks</h1>
+                <p className="text-muted-foreground">View and manage tasks</p>
+              </div>
+              {user?.role === "manager" && (
+                <div className="flex gap-2">
+                  <Button
+                    variant={viewMode === "grid" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setViewMode("grid")}
+                  >
+                    <LayoutGrid className="h-4 w-4 mr-2" />
+                    Grid
+                  </Button>
+                  <Button
+                    variant={viewMode === "table" ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setViewMode("table")}
+                  >
+                    <List className="h-4 w-4 mr-2" />
+                    Table
+                  </Button>
+                </div>
+              )}
             </div>
 
             <Tabs defaultValue="all" className="space-y-4">
               <TabsList>
-                <TabsTrigger value="all">Бүх хүсэлт</TabsTrigger>
-                <TabsTrigger value="pending">Хүлээгдэж буй</TabsTrigger>
-                <TabsTrigger value="in_progress">Шийдвэрлэгдэж буй</TabsTrigger>
-                <TabsTrigger value="in_review">Хянагдаж буй</TabsTrigger>
-                <TabsTrigger value="completed">Дууссан</TabsTrigger>
+                <TabsTrigger value="all">All Tasks</TabsTrigger>
+                <TabsTrigger value="pending">Pending</TabsTrigger>
+                <TabsTrigger value="in_progress">In Progress</TabsTrigger>
+                <TabsTrigger value="in_review">In Review</TabsTrigger>
+                <TabsTrigger value="completed">Completed</TabsTrigger>
               </TabsList>
 
               <TabsContent value="all" className="space-y-4">
-                {renderTaskGrid(filteredTasks)}
+                {user?.role === "manager" && viewMode === "table"
+                  ? renderTaskTable(filteredTasks)
+                  : renderTaskGrid(filteredTasks)}
               </TabsContent>
 
               <TabsContent value="pending" className="space-y-4">
-                {renderTaskGrid(getTasksByStatus("pending"))}
+                {user?.role === "manager" && viewMode === "table"
+                  ? renderTaskTable(getTasksByStatus("pending"))
+                  : renderTaskGrid(getTasksByStatus("pending"))}
               </TabsContent>
 
               <TabsContent value="in_progress" className="space-y-4">
-                {renderTaskGrid(getTasksByStatus("in_progress"))}
+                {user?.role === "manager" && viewMode === "table"
+                  ? renderTaskTable(getTasksByStatus("in_progress"))
+                  : renderTaskGrid(getTasksByStatus("in_progress"))}
               </TabsContent>
 
               <TabsContent value="in_review" className="space-y-4">
-                {renderTaskGrid(getTasksByStatus("in_review"))}
+                {user?.role === "manager" && viewMode === "table"
+                  ? renderTaskTable(getTasksByStatus("in_review"))
+                  : renderTaskGrid(getTasksByStatus("in_review"))}
               </TabsContent>
 
               <TabsContent value="completed" className="space-y-4">
-                {renderTaskGrid(getTasksByStatus("completed"))}
+                {user?.role === "manager" && viewMode === "table"
+                  ? renderTaskTable(getTasksByStatus("completed"))
+                  : renderTaskGrid(getTasksByStatus("completed"))}
               </TabsContent>
             </Tabs>
           </div>

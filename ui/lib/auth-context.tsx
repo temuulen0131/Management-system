@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { createContext, useContext, useState, type ReactNode } from "react"
 
 export type UserRole = "manager" | "employee" | "client"
 
@@ -75,14 +75,16 @@ function saveRegisteredUsers(users: StoredUser[]) {
 
 /* ===== PROVIDER ===== */
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const stored = localStorage.getItem("user")
+      return stored ? (JSON.parse(stored) as User) : null
+    } catch {
+      return null
+    }
+  })
 
-  useEffect(() => {
-    const stored = localStorage.getItem("user")
-    if (stored) setUser(JSON.parse(stored))
-    setIsLoading(false)
-  }, [])
+  const [isLoading] = useState(false)
 
   /* ===== LOGIN (EMAIL + PASSWORD ONLY) ===== */
   const login = async (email: string, password: string): Promise<boolean> => {

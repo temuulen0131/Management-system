@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { useAuth } from "@/lib/auth-context"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, ClipboardList, Users, PlusCircle, LogOut } from "lucide-react"
+import { LayoutDashboard, ClipboardList, Users, PlusCircle, LogOut, UserCircle, FileText } from "lucide-react"
 
 export function Sidebar() {
   const { user, logout } = useAuth()
@@ -28,12 +28,26 @@ export function Sidebar() {
     ]
 
     if (user?.role === "manager") {
-      baseItems.push({
-        href: "/employees",
-        icon: Users,
-        label: "Employees",
-        roles: ["manager"],
-      })
+      baseItems.push(
+        {
+          href: "/employees",
+          icon: Users,
+          label: "Employees",
+          roles: ["manager"],
+        },
+        {
+          href: "/clients",
+          icon: UserCircle,
+          label: "Clients",
+          roles: ["manager"],
+        },
+        {
+          href: "/logs",
+          icon: FileText,
+          label: "Logs",
+          roles: ["manager"],
+        },
+      )
     }
 
     if (user?.role === "client") {
@@ -84,7 +98,7 @@ export function Sidebar() {
       <div className="border-t p-4">
         <Button variant="ghost" className="w-full justify-start gap-3" onClick={logout}>
           <LogOut className="h-4 w-4" />
-          Гарах
+          Sign out
         </Button>
       </div>
     </div>
